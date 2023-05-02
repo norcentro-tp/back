@@ -18,6 +18,7 @@ import {
   ApiUnprocessableEntityResponse,
   ApiUnauthorizedResponse,
   ApiOkResponse,
+  ApiBearerAuth,
 } from '@nestjs/swagger';
 
 @ApiTags('Auth')
@@ -35,9 +36,10 @@ export class AuthController {
     return this.authService.signIn(signInDto.email, signInDto.password);
   }
 
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
-  }
+  // @UseGuards(AuthGuard)
+  // @ApiBearerAuth()
+  // @Get('profile')
+  // getProfile(@Request() req) {
+  //   return req.user;
+  // }
 }

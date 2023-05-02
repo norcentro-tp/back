@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('NORCENTRO api')
     .setDescription('The NORCENTRO API endpoints')
     .setVersion('1.0')

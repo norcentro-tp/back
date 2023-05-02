@@ -6,6 +6,12 @@ import { AppService } from './app.service';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { TipoDocumentosModule } from './tipo_documentos/tipo_documentos.module';
 import { AuthModule } from './auth/auth.module';
+import { MotosModule } from './motos/motos.module';
+import { ModelosModule } from './modelos/modelos.module';
+import { ProveedoresModule } from './proveedores/proveedores.module';
+import { CampaniasModule } from './campanias/campanias.module';
+import { EstadosMotoModule } from './estados_moto/estados_moto.module';
+import { CategoriasMotoModule } from './categorias_moto/categorias_moto.module';
 
 @Module({
   imports: [
@@ -16,6 +22,12 @@ import { AuthModule } from './auth/auth.module';
     UsuariosModule,
     TipoDocumentosModule,
     AuthModule,
+    MotosModule,
+    ModelosModule,
+    ProveedoresModule,
+    CampaniasModule,
+    EstadosMotoModule,
+    CategoriasMotoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
