@@ -4,6 +4,6 @@ import { TipoDocumentosController } from './tipo_documentos.controller';
 
 @Module({
   controllers: [TipoDocumentosController],
-  providers: [TipoDocumentosService]
+  providers: [TipoDocumentosService],
 })
 export class TipoDocumentosModule {}

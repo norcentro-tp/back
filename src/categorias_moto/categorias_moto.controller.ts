@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CategoriasMotoService } from './categorias_moto.service';
 import { CreateCategoriasMotoDto } from './dto/create-categorias_moto.dto';
 import { UpdateCategoriasMotoDto } from './dto/update-categorias_moto.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Categorias Moto')
 @Controller('categorias-moto')
 export class CategoriasMotoController {
   constructor(private readonly categoriasMotoService: CategoriasMotoService) {}
@@ -23,7 +33,10 @@ export class CategoriasMotoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCategoriasMotoDto: UpdateCategoriasMotoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCategoriasMotoDto: UpdateCategoriasMotoDto,
+  ) {
     return this.categoriasMotoService.update(+id, updateCategoriasMotoDto);
   }
 

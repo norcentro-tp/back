@@ -10,7 +10,9 @@ import {
 import { ModelosService } from './modelos.service';
 import { CreateModeloDto } from './dto/create-modelo.dto';
 import { UpdateModeloDto } from './dto/update-modelo.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Modelos Moto')
 @Controller('modelos')
 export class ModelosController {
   constructor(private readonly modelosService: ModelosService) {}
