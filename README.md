@@ -26,6 +26,9 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Deploy
+https://norcentro-back-xz5ybaptnq-uc.a.run.app/api
+
 ## Installation
 
 ```bash
