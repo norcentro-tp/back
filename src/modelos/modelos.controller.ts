@@ -29,7 +29,7 @@ export class ModelosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.modelosService.findOne(+id);
+    return this.modelosService.findOne(id);
   }
 
   @Patch(':id')

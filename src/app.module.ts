@@ -12,6 +12,7 @@ import { ProveedoresModule } from './proveedores/proveedores.module';
 import { CampaniasModule } from './campanias/campanias.module';
 import { EstadosMotoModule } from './estados_moto/estados_moto.module';
 import { CategoriasMotoModule } from './categorias_moto/categorias_moto.module';
+import { MarcasModule } from './marcas/marcas.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CategoriasMotoModule } from './categorias_moto/categorias_moto.module';
     CampaniasModule,
     EstadosMotoModule,
     CategoriasMotoModule,
+    MarcasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

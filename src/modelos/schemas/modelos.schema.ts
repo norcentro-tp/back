@@ -13,9 +13,6 @@ export class Modelo {
   nombre: string;
 
   @Prop()
-  marca: string;
-
-  @Prop()
   anio: string;
 
   @Prop()
@@ -24,8 +21,8 @@ export class Modelo {
   @Prop()
   precio: number;
 
-  @Prop({ type: SchemaMongo.Types.ObjectId, ref: CategoriaMoto.name })
-  categoria: { type: SchemaMongo.Types.ObjectId; ref: 'categoria_moto' };
+  @Prop()
+  colores: Array<string>;
 
   @Prop()
   password: string;

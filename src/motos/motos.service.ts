@@ -26,7 +26,9 @@ export class MotosService {
       .populate({ path: 'modelo', populate: { path: 'categoria' } })
       .populate('proveedor')
       .populate('campania')
-      .populate('estado');
+      .populate('categoria')
+      .populate('estado')
+      .populate('marca');
   }
 
   async findOne(id: string) {
@@ -35,7 +37,9 @@ export class MotosService {
       .populate({ path: 'modelo', populate: { path: 'categoria' } })
       .populate('proveedor')
       .populate('campania')
-      .populate('estado');
+      .populate('categoria')
+      .populate('estado')
+      .populate('marca');
   }
 
   async update(id: string, updateMotoDto: UpdateMotoDto) {
