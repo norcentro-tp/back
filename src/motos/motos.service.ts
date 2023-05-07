@@ -11,35 +11,34 @@ export class MotosService {
   async create(createMotoDto: CreateMotoDto) {
     return await this.motoModel.create({
       _id: new Types.ObjectId(),
-      campania: [],
       codigo_vin: createMotoDto.codigo_vin,
       color: createMotoDto.color,
-      estado: new Types.ObjectId(createMotoDto.estado),
+      categoria:new Types.ObjectId(createMotoDto.categoria),
       modelo: new Types.ObjectId(createMotoDto.modelo),
+      marca: new Types.ObjectId(createMotoDto.marca),
       proveedor: new Types.ObjectId(createMotoDto.proveedor),
+      estado: new Types.ObjectId(createMotoDto.estado),
     });
   }
 
   async findAll() {
     return await this.motoModel
       .find()
-      .populate({ path: 'modelo', populate: { path: 'categoria' } })
-      .populate('proveedor')
-      .populate('campania')
       .populate('categoria')
-      .populate('estado')
-      .populate('marca');
+      .populate('modelo')
+      .populate('marca')
+      .populate('proveedor')
+      .populate('estado_moto');
   }
 
   async findOne(id: string) {
     return await this.motoModel
       .findById(id)
-      .populate({ path: 'modelo', populate: { path: 'categoria' } })
-      .populate('proveedor')
-      .populate('campania')
       .populate('categoria')
-      .populate('estado')
-      .populate('marca');
+      .populate('modelo')
+      .populate('marca')
+      .populate('proveedor')
+      .populate('estado_moto');
   }
 
   async update(id: string, updateMotoDto: UpdateMotoDto) {

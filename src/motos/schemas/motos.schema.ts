@@ -36,7 +36,7 @@ export class Moto {
   campania: [{ type: SchemaMongo.Types.ObjectId; ref: 'campania' }];
 
   @Prop({ type: SchemaMongo.Types.ObjectId, ref: EstadoMoto.name })
-  estado: { type: SchemaMongo.Types.ObjectId; ref: 'estado_moto' };
+  estado_moto: { type: SchemaMongo.Types.ObjectId; ref: 'estado_moto' };
 }
 
 export const MotoSchema = SchemaFactory.createForClass(Moto);

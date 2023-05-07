@@ -22,10 +22,11 @@ export class Modelo {
   precio: number;
 
   @Prop()
-  colores: Array<string>;
+  colores: Array<object>;
 
   @Prop()
-  password: string;
+  fotos: Array<object>;
+
 }
 
 export const ModeloSchema = SchemaFactory.createForClass(Modelo);
