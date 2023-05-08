@@ -1,32 +1,39 @@
+import { Model, Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { CreateProveedoreDto } from './dto/create-proveedore.dto';
-import { UpdateProveedoreDto } from './dto/update-proveedore.dto';
+import { CreateProveedorDto } from './dto/create-proveedor.dto';
+import { UpdateProveedorDto } from './dto/update-proveedor.dto';
 import { Proveedor } from './schemas/proveedores.schema';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 
 @Injectable()
 export class ProveedoresService {
   constructor(
     @InjectModel(Proveedor.name) private proveedorModel: Model<Proveedor>,
   ) {}
-  create(createProveedoreDto: CreateProveedoreDto) {
-    return 'This action adds a new proveedore';
+  async create(createProveedoreDto: CreateProveedorDto) {
+    return await this.proveedorModel.create({
+      _id: new Types.ObjectId(),
+      nombre: createProveedoreDto.nombre,
+      telefono: createProveedoreDto.telefono,
+      correo: createProveedoreDto.correo,
+      direccion: createProveedoreDto.direccion
+    });
   }
 
   async findAll() {
     return await this.proveedorModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} proveedore`;
+  async findOne(id: string) {
+    return await this.proveedorModel
+      .findById(id)
   }
 
-  update(id: number, updateProveedoreDto: UpdateProveedoreDto) {
-    return `This action updates a #${id} proveedore`;
+  async update(id: string, updateProveedoreDto: UpdateProveedorDto) {
+    return await this.proveedorModel.findByIdAndUpdate(id, updateProveedoreDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} proveedore`;
+  async remove(id: string) {
+    return await this.proveedorModel.findByIdAndRemove(id);
   }
 }
