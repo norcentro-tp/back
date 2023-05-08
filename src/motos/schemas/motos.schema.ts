@@ -20,14 +20,14 @@ export class Moto {
   @Prop()
   color: string;
 
+  @Prop({ type: SchemaMongo.Types.ObjectId, ref: CategoriaMoto.name })
+  categoria: { type: SchemaMongo.Types.ObjectId; ref: 'categoria' };
+
   @Prop({ type: SchemaMongo.Types.ObjectId, ref: Modelo.name })
   modelo: { type: SchemaMongo.Types.ObjectId; ref: 'modelo' };
 
   @Prop({ type: SchemaMongo.Types.ObjectId, ref: Marca.name })
   marca: { type: SchemaMongo.Types.ObjectId; ref: 'marca' };
-
-  @Prop({ type: SchemaMongo.Types.ObjectId, ref: CategoriaMoto.name })
-  categoria: { type: SchemaMongo.Types.ObjectId; ref: 'categoria' };
 
   @Prop({ type: SchemaMongo.Types.ObjectId, ref: Proveedor.name })
   proveedor: { type: SchemaMongo.Types.ObjectId; ref: 'proveedor' };
@@ -36,7 +36,7 @@ export class Moto {
   campania: [{ type: SchemaMongo.Types.ObjectId; ref: 'campania' }];
 
   @Prop({ type: SchemaMongo.Types.ObjectId, ref: EstadoMoto.name })
-  estado_moto: { type: SchemaMongo.Types.ObjectId; ref: 'estado_moto' };
+  estado: { type: SchemaMongo.Types.ObjectId; ref: 'estado_moto' };
 }
 
 export const MotoSchema = SchemaFactory.createForClass(Moto);

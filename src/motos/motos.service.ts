@@ -13,7 +13,7 @@ export class MotosService {
       _id: new Types.ObjectId(),
       codigo_vin: createMotoDto.codigo_vin,
       color: createMotoDto.color,
-      categoria:new Types.ObjectId(createMotoDto.categoria),
+      categoria: new Types.ObjectId(createMotoDto.categoria),
       modelo: new Types.ObjectId(createMotoDto.modelo),
       marca: new Types.ObjectId(createMotoDto.marca),
       proveedor: new Types.ObjectId(createMotoDto.proveedor),
@@ -28,7 +28,7 @@ export class MotosService {
       .populate('modelo')
       .populate('marca')
       .populate('proveedor')
-      .populate('estado_moto');
+      .populate('estado');
   }
 
   async findOne(id: string) {
@@ -38,14 +38,17 @@ export class MotosService {
       .populate('modelo')
       .populate('marca')
       .populate('proveedor')
-      .populate('estado_moto');
+      .populate('estado');
   }
 
   async update(id: string, updateMotoDto: UpdateMotoDto) {
     return await this.motoModel.findByIdAndUpdate(id, updateMotoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} moto`;
+  async remove(id: string) {
+    const estadoInactivo = new Types.ObjectId('6455c77e676ef5d189c4923c');
+    return await this.motoModel.findByIdAndUpdate(id, {
+      estado: estadoInactivo,
+    });
   }
 }

@@ -7,7 +7,9 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class ProveedoresService {
-  constructor(@InjectModel(Proveedor.name) private proveedorModel: Model<Proveedor>) {}
+  constructor(
+    @InjectModel(Proveedor.name) private proveedorModel: Model<Proveedor>,
+  ) {}
   create(createProveedoreDto: CreateProveedoreDto) {
     return 'This action adds a new proveedore';
   }

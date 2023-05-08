@@ -56,6 +56,6 @@ export class MotosController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.motosService.remove(+id);
+    return this.motosService.remove(id);
   }
 }
