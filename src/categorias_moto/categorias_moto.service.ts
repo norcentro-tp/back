@@ -9,8 +9,11 @@ import { CategoriaMoto } from './schemas/categorias_moto.schema';
 export class CategoriasMotoService {
   constructor(@InjectModel(CategoriaMoto.name) private categoriamotoModel: Model<CategoriaMoto>) {}
 
-  create(createCategoriasMotoDto: CreateCategoriasMotoDto) {
-    return 'This action adds a new categoriasMoto';
+  async create(createCategoriasMotoDto: CreateCategoriasMotoDto) {
+    return await this.categoriamotoModel.create({
+      _id: new Types.ObjectId(),
+      nombre: createCategoriasMotoDto.nombre
+    });
   }
 
   findAll() {
