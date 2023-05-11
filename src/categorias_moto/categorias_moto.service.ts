@@ -20,12 +20,14 @@ export class CategoriasMotoService {
     return this.categoriamotoModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} categoriasMoto`;
+
+  async findOne(id: string) {
+    return await this.categoriamotoModel
+      .findById(id)
   }
 
-  update(id: number, updateCategoriasMotoDto: UpdateCategoriasMotoDto) {
-    return `This action updates a #${id} categoriasMoto`;
+  async update(id: string, updateCategoriasMotoDto: UpdateCategoriasMotoDto) {
+    return await this.categoriamotoModel.findByIdAndUpdate(id, updateCategoriasMotoDto);
   }
 
   remove(id: number) {

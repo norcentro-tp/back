@@ -8,6 +8,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Put,
 } from '@nestjs/common';
 import { CategoriasMotoService } from './categorias_moto.service';
 import { CreateCategoriasMotoDto } from './dto/create-categorias_moto.dto';
@@ -41,15 +42,19 @@ export class CategoriasMotoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.categoriasMotoService.findOne(+id);
+    return this.categoriasMotoService.findOne(id);
   }
 
-  @Patch(':id')
+  @ApiOkResponse({ description: 'The resource was updated successfully' })
+  @ApiNotFoundResponse({ description: 'Resource not found' })
+  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+  @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateCategoriasMotoDto: UpdateCategoriasMotoDto,
   ) {
-    return this.categoriasMotoService.update(+id, updateCategoriasMotoDto);
+    return this.categoriasMotoService.update(id, updateCategoriasMotoDto);
   }
 
   @Delete(':id')
