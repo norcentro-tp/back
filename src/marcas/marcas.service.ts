@@ -12,12 +12,15 @@ export class MarcasService {
   async create(createMarcaDto: CreateMarcaDto) {
     return await this.marcaModel.create({
       _id: new Types.ObjectId(),
-      nombre: createMarcaDto.nombre
+      nombre: createMarcaDto.nombre,
+      estado: 'activo'
     });
   }
 
-  findAll() {
-    return this.marcaModel.find().exec();
+ async findAll(): Promise<Marca[]> {
+    return await this.marcaModel
+      .find({ estado: { $ne: 'inactivo' } })
+      .exec();
   }
 
 
@@ -30,7 +33,9 @@ export class MarcasService {
     return await this.marcaModel.findByIdAndUpdate(id, updateMarcaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} marca`;
+  async remove(id: string) {
+    return await this.marcaModel.findByIdAndUpdate(id, {
+      estado: 'inactivo',
+    });
   }
 }

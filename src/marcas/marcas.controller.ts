@@ -53,6 +53,6 @@ export class MarcasController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.marcasService.remove(+id);
+    return this.marcasService.remove(id);
   }
 }

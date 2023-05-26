@@ -16,12 +16,15 @@ export class ProveedoresService {
       nombre: createProveedoreDto.nombre,
       telefono: createProveedoreDto.telefono,
       correo: createProveedoreDto.correo,
-      direccion: createProveedoreDto.direccion
+      direccion: createProveedoreDto.direccion,
+      estado:'activo'
     });
   }
 
-  async findAll() {
-    return await this.proveedorModel.find();
+  async findAll(): Promise<Proveedor[]> {
+    return await this.proveedorModel
+      .find({ estado: { $ne: 'inactivo' } })
+      .exec();
   }
 
   async findOne(id: string) {
@@ -34,6 +37,8 @@ export class ProveedoresService {
   }
 
   async remove(id: string) {
-    return await this.proveedorModel.findByIdAndRemove(id);
+    return await this.proveedorModel.findByIdAndUpdate(id, {
+      estado: 'inactivo',
+    });
   }
 }

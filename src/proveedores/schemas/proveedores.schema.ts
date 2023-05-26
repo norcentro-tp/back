@@ -19,6 +19,9 @@ export class Proveedor {
 
   @Prop()
   direccion: string;
+
+  @Prop()
+  estado: string;
 }
 
 export const ProveedorSchema = SchemaFactory.createForClass(Proveedor);

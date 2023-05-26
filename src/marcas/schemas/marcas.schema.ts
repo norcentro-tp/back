@@ -10,6 +10,9 @@ export class Marca {
 
   @Prop()
   nombre: string;
+
+  @Prop()
+  estado: string;
 }
 
 export const MarcaSchema = SchemaFactory.createForClass(Marca);

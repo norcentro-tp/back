@@ -12,12 +12,15 @@ export class CategoriasMotoService {
   async create(createCategoriasMotoDto: CreateCategoriasMotoDto) {
     return await this.categoriamotoModel.create({
       _id: new Types.ObjectId(),
-      nombre: createCategoriasMotoDto.nombre
+      nombre: createCategoriasMotoDto.nombre,
+      estado:'activo'
     });
   }
 
-  findAll() {
-    return this.categoriamotoModel.find().exec();
+  async findAll(): Promise<CategoriaMoto[]> {
+    return await this.categoriamotoModel
+      .find({ estado: { $ne: 'inactivo' } })
+      .exec();
   }
 
 
@@ -30,7 +33,9 @@ export class CategoriasMotoService {
     return await this.categoriamotoModel.findByIdAndUpdate(id, updateCategoriasMotoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} categoriasMoto`;
+  async remove(id: string) {
+    return await this.categoriamotoModel.findByIdAndUpdate(id, {
+      estado: 'inactivo',
+    });
   }
 }

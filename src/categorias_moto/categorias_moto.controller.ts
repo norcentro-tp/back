@@ -59,6 +59,6 @@ export class CategoriasMotoController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.categoriasMotoService.remove(+id);
+    return this.categoriasMotoService.remove(id);
   }
 }

@@ -10,6 +10,9 @@ export class CategoriaMoto {
 
   @Prop()
   nombre: string;
+
+  @Prop()
+  estado: string;
 }
 
 export const CategoriaMotoSchema = SchemaFactory.createForClass(CategoriaMoto);
