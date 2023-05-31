@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -32,13 +32,13 @@ export class ModelosController {
     return this.modelosService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateModeloDto: UpdateModeloDto) {
-    return this.modelosService.update(+id, updateModeloDto);
+    return this.modelosService.update(id, updateModeloDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.modelosService.remove(+id);
+    return this.modelosService.remove(id);
   }
 }
