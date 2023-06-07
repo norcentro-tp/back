@@ -4,17 +4,25 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateModeloDto } from './dto/create-modelo.dto';
 import { UpdateModeloDto } from './dto/update-modelo.dto';
 import { Modelo } from './schemas/modelos.schema';
+import { FirebaseService } from 'src/storage/firebase.service';
+
 
 @Injectable()
 export class ModelosService {
-  constructor(@InjectModel(Modelo.name) private modeloModel: Model<Modelo>) {}
+  constructor(@InjectModel(Modelo.name) private modeloModel: Model<Modelo>,private readonly firebaseService: FirebaseService ) {}
 
-  async create(createModeloDto: CreateModeloDto) {
+  async create(createModeloDto: CreateModeloDto,imageFiles: Express.Multer.File[]) {
+    if (imageFiles) {
+      const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
+      createModeloDto.fotos = uploadedUrls;
+    }
     return await this.modeloModel.create({
       _id: new Types.ObjectId(),
       nombre: createModeloDto.nombre,
+      descripcion: createModeloDto.descripcion,
       cilindrada: createModeloDto.cilindrada,
       velocidades: createModeloDto.velocidades,
+      capacidad_tanque: createModeloDto.capacidad_tanque,
       torque: createModeloDto.torque,
       motor: createModeloDto.motor,
       potencia: createModeloDto.potencia,
@@ -41,7 +49,11 @@ export class ModelosService {
     .exec();
   }
 
-  async update(id: string, updateModeloDto: UpdateModeloDto) {
+  async update(id: string, updateModeloDto: UpdateModeloDto,imageFiles: Express.Multer.File[]) {
+    if (imageFiles) {
+      const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
+      updateModeloDto.fotos = uploadedUrls;
+    }
     return await this.modeloModel.findByIdAndUpdate(id, updateModeloDto);
   }
 

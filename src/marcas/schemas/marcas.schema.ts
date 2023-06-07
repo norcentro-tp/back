@@ -12,7 +12,13 @@ export class Marca {
   nombre: string;
 
   @Prop()
+  descripcion: string;
+
+  @Prop()
   estado: string;
+
+  @Prop()
+  icono: string;
 }
 
 export const MarcaSchema = SchemaFactory.createForClass(Marca);

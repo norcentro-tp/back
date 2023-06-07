@@ -7,14 +7,24 @@ export class CreateModeloDto {
     nombre: string;
     @ApiProperty({
       type: String,
+      description: 'Descripcion',
+    })
+    descripcion: string;
+    @ApiProperty({
+      type: String,
       description: 'Cilindrada',
     })
     cilindrada: string;
     @ApiProperty({
-      type: String,
+      type: Number,
       description: 'Velocidades',
     })
     velocidades: number;
+    @ApiProperty({
+      type: Number,
+      description: 'Capacidad de Tanque',
+    })
+    capacidad_tanque: number;
     @ApiProperty({
       type: String,
       description: 'Torque',
@@ -36,7 +46,7 @@ export class CreateModeloDto {
     })
     anio: string;
     @ApiProperty({
-      type: String,
+      type: Number,
       description: 'Precio',
     })
     precio: number;

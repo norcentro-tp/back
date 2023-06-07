@@ -4,16 +4,23 @@ import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
 import { Marca } from './schemas/marcas.schema';
 import { InjectModel } from '@nestjs/mongoose';
+import { FirebaseService } from 'src/storage/firebase.service';
 
 @Injectable()
 export class MarcasService {
-  constructor(@InjectModel(Marca.name) private marcaModel: Model<Marca>) {}
+  constructor(@InjectModel(Marca.name) private marcaModel: Model<Marca>,private readonly firebaseService: FirebaseService) {}
 
-  async create(createMarcaDto: CreateMarcaDto) {
+  async create(createMarcaDto: CreateMarcaDto, imageFiles: Express.Multer.File[]) {
+    if (imageFiles.length > 0) {
+      const uploadedUrl = await this.firebaseService.uploadImageToFirebase("Marca", imageFiles);
+      createMarcaDto.icono = uploadedUrl;
+    }
     return await this.marcaModel.create({
       _id: new Types.ObjectId(),
       nombre: createMarcaDto.nombre,
-      estado: 'activo'
+      descripcion: createMarcaDto.descripcion,
+      estado: 'activo',
+      icono:createMarcaDto.icono,
     });
   }
 
@@ -29,7 +36,11 @@ export class MarcasService {
       .findById(id)
   }
 
-  async update(id: string, updateMarcaDto: UpdateMarcaDto) {
+  async update(id: string, updateMarcaDto: UpdateMarcaDto,imageFiles: Express.Multer.File[]) {
+    if (imageFiles.length > 0) {
+    const uploadedUrl = await this.firebaseService.uploadImageToFirebase("Marca",imageFiles);
+    updateMarcaDto.icono = uploadedUrl;
+  }
     return await this.marcaModel.findByIdAndUpdate(id, updateMarcaDto);
   }
 

@@ -3,16 +3,18 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   HttpCode,
   HttpStatus,
   Put,
+  UseInterceptors,
+  UploadedFiles
 } from '@nestjs/common';
 import { MarcasService } from './marcas.service';
 import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
 
 @ApiTags('Marcas Moto')
@@ -21,12 +23,17 @@ export class MarcasController {
   constructor(private readonly marcasService: MarcasService) {}
 
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ description: 'Proveedor agregado' })
+  @ApiOkResponse({ description: 'Marca agregada' })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized Request' })
   @Post()
-  create(@Body() createMarcaDto: CreateMarcaDto) {
-    return this.marcasService.create(createMarcaDto);
+  @UseInterceptors(FilesInterceptor('imageFiles'))
+  create(
+    @Body() createMarcaDto: CreateMarcaDto,
+    @UploadedFiles() imageFiles: Express.Multer.File[]
+  ) {
+    console.log(imageFiles)
+    return this.marcasService.create(createMarcaDto,imageFiles);
   }
 
   @Get()
@@ -44,11 +51,13 @@ export class MarcasController {
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @Put(':id')
+  @UseInterceptors(FilesInterceptor('imageFiles'))
   update(
     @Param('id') id: string,
     @Body() updateMarcaDto: UpdateMarcaDto,
+    @UploadedFiles() imageFiles: Express.Multer.File[]
   ) {
-    return this.marcasService.update(id, updateMarcaDto);
+    return this.marcasService.update(id, updateMarcaDto,imageFiles);
   }
 
   @Delete(':id')

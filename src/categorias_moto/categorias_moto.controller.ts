@@ -27,7 +27,7 @@ export class CategoriasMotoController {
   constructor(private readonly categoriasMotoService: CategoriasMotoService) {}
 
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ description: 'Proveedor agregado' })
+  @ApiOkResponse({ description: 'Categoria agregada' })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized Request' })
   @Post()

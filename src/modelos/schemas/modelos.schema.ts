@@ -14,10 +14,16 @@ export class Modelo {
   nombre: string;
 
   @Prop()
+  descripcion: string;
+
+  @Prop()
   cilindrada: string;
 
   @Prop()
   velocidades: number;
+
+  @Prop()
+  capacidad_tanque: number;
 
   @Prop()
   torque: string;
