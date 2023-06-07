@@ -11,7 +11,7 @@ export class MarcasService {
   constructor(@InjectModel(Marca.name) private marcaModel: Model<Marca>,private readonly firebaseService: FirebaseService) {}
 
   async create(createMarcaDto: CreateMarcaDto, imageFiles: Express.Multer.File[]) {
-    if (imageFiles) {
+    if (imageFiles && imageFiles.length>0) {
       const uploadedUrl = await this.firebaseService.uploadImageToFirebase("Marca", imageFiles);
       createMarcaDto.icono = uploadedUrl;
     }
@@ -37,7 +37,7 @@ export class MarcasService {
   }
 
   async update(id: string, updateMarcaDto: UpdateMarcaDto,imageFiles: Express.Multer.File[]) {
-    if (imageFiles) {
+    if (imageFiles && imageFiles.length>0) {
     const uploadedUrl = await this.firebaseService.uploadImageToFirebase("Marca",imageFiles);
     updateMarcaDto.icono = uploadedUrl;
   }

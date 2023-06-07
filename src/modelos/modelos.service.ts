@@ -12,7 +12,7 @@ export class ModelosService {
   constructor(@InjectModel(Modelo.name) private modeloModel: Model<Modelo>,private readonly firebaseService: FirebaseService ) {}
 
   async create(createModeloDto: CreateModeloDto,imageFiles: Express.Multer.File[]) {
-    if (imageFiles) {
+    if (imageFiles && imageFiles.length>0) {
       const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
       createModeloDto.fotos = uploadedUrls;
     }
@@ -50,7 +50,7 @@ export class ModelosService {
   }
 
   async update(id: string, updateModeloDto: UpdateModeloDto,imageFiles: Express.Multer.File[]) {
-    if (imageFiles) {
+    if (imageFiles && imageFiles.length>0) {
       const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
       updateModeloDto.fotos = uploadedUrls;
     }
