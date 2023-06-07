@@ -52,6 +52,9 @@ export class Modelo {
   @Prop()
   fotos: Array<object>;
 
+  @Prop()
+  estado: string;
+
 }
 
 export const ModeloSchema = SchemaFactory.createForClass(Modelo);

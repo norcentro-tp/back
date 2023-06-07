@@ -12,13 +12,13 @@ export class CreateMarcaDto {
   descripcion: string;
   @ApiProperty({
     type: String,
+    description: 'Icono',
+  })
+  icono: string ;
+  @ApiProperty({
+    type: String,
     description: 'Estado',
   })
   estado: string;
-  @ApiProperty({
-    type: String,
-    description: 'Nombre',
-  })
-  icono: string ;
 }
 

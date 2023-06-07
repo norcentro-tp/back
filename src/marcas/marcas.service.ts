@@ -19,8 +19,8 @@ export class MarcasService {
       _id: new Types.ObjectId(),
       nombre: createMarcaDto.nombre,
       descripcion: createMarcaDto.descripcion,
-      estado: 'activo',
       icono:createMarcaDto.icono,
+      estado: 'activo',
     });
   }
 
@@ -32,8 +32,7 @@ export class MarcasService {
 
 
   async findOne(id: string) {
-    return await this.marcaModel
-      .findById(id)
+    return await this.marcaModel.findById(id)
   }
 
   async update(id: string, updateMarcaDto: UpdateMarcaDto,imageFiles: Express.Multer.File[]) {

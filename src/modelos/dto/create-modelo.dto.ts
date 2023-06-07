@@ -70,4 +70,9 @@ export class CreateModeloDto {
       description: 'Lista de fotos del modelo',
     })
     fotos: Array<object>;
+    @ApiProperty({
+      type: String,
+      description: 'Estado',
+    })
+    estado: string;
   }

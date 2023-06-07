@@ -32,11 +32,13 @@ export class ModelosService {
       marca: new Types.ObjectId(createModeloDto.marca),
       colores: createModeloDto.colores,
       fotos: createModeloDto.fotos,
+      estado: 'activo',
     });
   }
 
   async findAll() {
     return await this.modeloModel.find()
+    .find({ estado: { $ne: 'inactivo' } })
     .populate('categoria')
     .populate('marca')
     .exec();
@@ -58,6 +60,8 @@ export class ModelosService {
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} modelo`;
+    return await this.modeloModel.findByIdAndUpdate(id, {
+      estado: 'inactivo',
+    });
   }
 }

@@ -25,8 +25,7 @@ export class CategoriasMotoService {
 
 
   async findOne(id: string) {
-    return await this.categoriamotoModel
-      .findById(id)
+    return await this.categoriamotoModel.findById(id)
   }
 
   async update(id: string, updateCategoriasMotoDto: UpdateCategoriasMotoDto) {
