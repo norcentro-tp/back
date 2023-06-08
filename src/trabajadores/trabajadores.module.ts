@@ -12,6 +12,5 @@ import { UsuariosModule } from 'src/usuarios/usuarios.module';
   ],
   controllers: [TrabajadoresController],
   providers: [TrabajadoresService],
-  exports: [TrabajadoresService],
 })
 export class TrabajadoresModule {}

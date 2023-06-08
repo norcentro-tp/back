@@ -14,7 +14,6 @@ import { CreateTrabajadorDto } from './dto/create-trabajador.dto';
 import { UpdateTrabajadorDto } from './dto/update-trabajador.dto';
 import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Trabajadores')
-@UseInterceptors(TransformInterceptor)
 @Controller('trabajador')
 export class TrabajadoresController {
   constructor(private readonly trabajadoresService: TrabajadoresService) {}
