@@ -13,6 +13,8 @@ import { CampaniasModule } from './campanias/campanias.module';
 import { EstadosMotoModule } from './estados_moto/estados_moto.module';
 import { CategoriasMotoModule } from './categorias_moto/categorias_moto.module';
 import { MarcasModule } from './marcas/marcas.module';
+import { TrabajadoresModule } from './trabajadores/trabajadores.module';
+import { ClientesModule } from './clientes/clientes.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { MarcasModule } from './marcas/marcas.module';
     EstadosMotoModule,
     CategoriasMotoModule,
     MarcasModule,
+    TrabajadoresModule,
+    ClientesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

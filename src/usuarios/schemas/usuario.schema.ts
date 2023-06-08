@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as SchemaMongo } from 'mongoose';
-import { TipoDocumento } from 'src/tipo_documentos/schemas/tipo_documentos.schema';
 
 export type UsuarioDocument = HydratedDocument<Usuario>;
 
@@ -10,25 +9,19 @@ export class Usuario {
   _id: SchemaMongo.Types.ObjectId;
 
   @Prop()
-  nombres: string;
-
-  @Prop()
-  apellidos: string;
-
-  @Prop()
-  telefono: string;
-
-  @Prop()
-  correo: string;
-
-  @Prop()
-  departamento: string;
-
-  @Prop()
-  provincia: string;
+  nombre_usuario: string;
 
   @Prop()
   password: string;
+
+  @Prop()
+  tipo_usuario: string;
+
+  @Prop()
+  estado: string;
+
+  @Prop()
+  correo: string;
 }
 
 export const UsuarioSchema = SchemaFactory.createForClass(Usuario);
