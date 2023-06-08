@@ -75,4 +75,9 @@ export class CreateModeloDto {
       description: 'Estado',
     })
     estado: string;
+    @ApiProperty({
+      type: String,
+      description: 'Catalogo',
+    })
+    catalogo: string;
   }

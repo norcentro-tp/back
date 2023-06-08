@@ -55,6 +55,9 @@ export class Modelo {
   @Prop()
   estado: string;
 
+  @Prop()
+  catalogo: string;
+
 }
 
 export const ModeloSchema = SchemaFactory.createForClass(Modelo);

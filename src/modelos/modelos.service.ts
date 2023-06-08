@@ -33,6 +33,7 @@ export class ModelosService {
       colores: createModeloDto.colores,
       fotos: createModeloDto.fotos,
       estado: 'activo',
+      catalogo: 'inactivo'
     });
   }
 
@@ -57,6 +58,16 @@ export class ModelosService {
       updateModeloDto.fotos = uploadedUrls;
     }
     return await this.modeloModel.findByIdAndUpdate(id, updateModeloDto);
+  }
+
+  async updateCatalogue(id: string) {
+    const entradaCatalogo = await this.modeloModel.findById(id);
+    if (entradaCatalogo) {
+      entradaCatalogo.catalogo = entradaCatalogo.catalogo === 'activo' ? 'inactivo' : 'activo';
+      await entradaCatalogo.save();
+      return entradaCatalogo;
+    }
+    return null; 
   }
 
   async remove(id: string) {

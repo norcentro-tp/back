@@ -4,6 +4,7 @@ import {
   Post,
   Body,
   Put,
+  Patch,
   Param,
   Delete,
   HttpCode,
@@ -62,6 +63,11 @@ export class ModelosController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.modelosService.remove(id);
+  }
+
+  @Put(':id/updateCatalogue')
+  async updateCatalogue(@Param('id') id: string) {
+    return this.modelosService.updateCatalogue(id);
   }
   
 }
