@@ -30,14 +30,15 @@ export class TrabajadoresService {
       correo: createTrabajadorDto.correo,
       telefono: createTrabajadorDto.telefono,
       fecha_nacimiento: createTrabajadorDto.fecha_nacimiento,
+      documento_identificador: createTrabajadorDto.documento_identificador,
       usuario: usuarioCreado._id,
       estado: 'activo'
     });
   }
 
   async findAll(): Promise<Trabajador[]> {
-    return await this.trabajadorModel
-      .find()
+    return await this.trabajadorModel      
+      .find({ estado: { $ne: 'inactivo' } })
       .populate('usuario')
       .exec();
   }

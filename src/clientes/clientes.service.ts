@@ -30,6 +30,7 @@ export class ClientesService {
       correo: createClienteDto.correo,
       telefono: createClienteDto.telefono,
       direccion: createClienteDto.direccion,
+      documento_identificador: createClienteDto.documento_identificador,
       usuario: usuarioCreado._id,
       estado: 'activo'
     });
@@ -37,7 +38,7 @@ export class ClientesService {
 
   async findAll(): Promise<Cliente[]> {
     return await this.clienteModel
-      .find()
+      .find({ estado: { $ne: 'inactivo' } })
       .populate('usuario')
       .exec();
   }

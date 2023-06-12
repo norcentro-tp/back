@@ -13,9 +13,7 @@ export class MotosService {
       _id: new Types.ObjectId(),
       codigo_vin: createMotoDto.codigo_vin,
       color: createMotoDto.color,
-      categoria: new Types.ObjectId(createMotoDto.categoria),
       modelo: new Types.ObjectId(createMotoDto.modelo),
-      marca: new Types.ObjectId(createMotoDto.marca),
       proveedor: new Types.ObjectId(createMotoDto.proveedor),
       estado: new Types.ObjectId(createMotoDto.estado),
     });
@@ -24,9 +22,7 @@ export class MotosService {
   async findAll() {
     return await this.motoModel
       .find()
-      .populate('categoria')
       .populate('modelo')
-      .populate('marca')
       .populate('proveedor')
       .populate('estado');
   }
@@ -34,9 +30,7 @@ export class MotosService {
   async findOne(id: string) {
     return await this.motoModel
       .findById(id)
-      .populate('categoria')
       .populate('modelo')
-      .populate('marca')
       .populate('proveedor')
       .populate('estado');
   }
