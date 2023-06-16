@@ -34,7 +34,7 @@ export class FirebaseService {
 
       const publicUrl = await fileBlob.getSignedUrl({
         action: 'read',
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // URL expires in 7 days
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 90, // URL expires in 90 days
       });
 
       uploadedUrls.push({
@@ -60,7 +60,7 @@ export class FirebaseService {
 
       const publicUrl = await fileBlob.getSignedUrl({
         action: 'read',
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // URL expires in 7 days
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 90, // URL expires in 90 days
       });
 
       uploadedUrl = publicUrl[0]
