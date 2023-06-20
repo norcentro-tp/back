@@ -8,9 +8,10 @@ import { UsuariosModule } from 'src/usuarios/usuarios.module';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Cliente.name, schema: ClienteSchema }]),
-    UsuariosModule
+    UsuariosModule,
   ],
   controllers: [ClientesController],
   providers: [ClientesService],
+  exports: [ClientesService],
 })
 export class ClientesModule {}

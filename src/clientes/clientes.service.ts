@@ -11,12 +11,12 @@ import { Cliente } from './schemas/cliente.schema';
 export class ClientesService {
   constructor(
     @InjectModel(Cliente.name) private clienteModel: Model<Cliente>,
-    private readonly usersService: UsuariosService
-    ) {}
+    private readonly usersService: UsuariosService,
+  ) {}
 
   async create(createClienteDto: CreateClienteDto) {
-    createClienteDto.usuario.correo=createClienteDto.correo;
-    createClienteDto.usuario.tipo_usuario="6455ad27676ef5d189c491ae";
+    createClienteDto.usuario.correo = createClienteDto.correo;
+    createClienteDto.usuario.tipo_usuario = '6455ad27676ef5d189c491ae';
 
     const usuarioDto = createClienteDto.usuario;
 
@@ -32,7 +32,7 @@ export class ClientesService {
       direccion: createClienteDto.direccion,
       documento_identificador: createClienteDto.documento_identificador,
       usuario: usuarioCreado._id,
-      estado: 'activo'
+      estado: 'activo',
     });
   }
 
@@ -44,14 +44,15 @@ export class ClientesService {
   }
 
   async findOne(id: string): Promise<Cliente> {
-    return await this.clienteModel
-      .findById(id)
-      .populate('usuario')
-      .exec();
+    return await this.clienteModel.findById(id).populate('usuario').exec();
+  }
+  async findByEmail(email: string): Promise<Cliente> {
+    return this.clienteModel.findOne({ correo: email }).exec();
   }
 
   async update(id: string, updateClienteDto: UpdateClienteDto) {
-    updateClienteDto.usuario.correo=updateClienteDto.correo;
+    console.log(updateClienteDto);
+    updateClienteDto.usuario.correo = updateClienteDto.correo;
 
     const usuarioDto = updateClienteDto.usuario;
 
