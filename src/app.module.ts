@@ -15,6 +15,7 @@ import { CategoriasMotoModule } from './categorias_moto/categorias_moto.module';
 import { MarcasModule } from './marcas/marcas.module';
 import { TrabajadoresModule } from './trabajadores/trabajadores.module';
 import { ClientesModule } from './clientes/clientes.module';
+import { CatalogoModule } from './catalogo/catalogo.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ClientesModule } from './clientes/clientes.module';
     MarcasModule,
     TrabajadoresModule,
     ClientesModule,
+    CatalogoModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -12,9 +12,11 @@ export class ModelosService {
   constructor(@InjectModel(Modelo.name) private modeloModel: Model<Modelo>,private readonly firebaseService: FirebaseService ) {}
 
   async create(createModeloDto: CreateModeloDto,imageFiles: Express.Multer.File[]) {
+    console.log(createModeloDto,imageFiles)
     if (imageFiles && imageFiles.length>0) {
       const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
       createModeloDto.fotos = uploadedUrls;
+      console.log(uploadedUrls)
     }
     return await this.modeloModel.create({
       _id: new Types.ObjectId(),
@@ -53,6 +55,7 @@ export class ModelosService {
   }
 
   async update(id: string, updateModeloDto: UpdateModeloDto,imageFiles: Express.Multer.File[]) {
+    console.log(updateModeloDto,imageFiles)
     if (imageFiles && imageFiles.length>0) {
       const uploadedUrls = await this.firebaseService.uploadImagesToFirebase("Modelo",imageFiles);
       updateModeloDto.fotos = uploadedUrls;
