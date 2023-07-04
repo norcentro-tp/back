@@ -45,6 +45,11 @@ export class MotosController {
     return this.motosService.findOne(id);
   }
 
+  @Get('/findAllVenta')
+  findAllVenta() {
+    return this.motosService.findAllVenta();
+  }
+
   @ApiOkResponse({ description: 'The resource was updated successfully' })
   @ApiNotFoundResponse({ description: 'Resource not found' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })

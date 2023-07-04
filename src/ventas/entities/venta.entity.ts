@@ -1,1 +1,1 @@
-export class Proveedor {}
+export class Venta {}

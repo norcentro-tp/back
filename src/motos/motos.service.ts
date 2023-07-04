@@ -22,7 +22,12 @@ export class MotosService {
   async findAll() {
     return await this.motoModel
       .find()
-      .populate('modelo')
+      .populate({
+        path: 'modelo',
+        populate: {
+          path: 'marca'
+        }
+      })
       .populate('proveedor')
       .populate('estado');
   }
@@ -30,7 +35,26 @@ export class MotosService {
   async findOne(id: string) {
     return await this.motoModel
       .findById(id)
-      .populate('modelo')
+      .populate({
+        path: 'modelo',
+        populate: {
+          path: 'marca'
+        }
+      })
+      .populate('proveedor')
+      .populate('estado');
+  }
+
+  async findAllVenta() {
+    const estadoEnTienda = new Types.ObjectId('644985cfc5afa53631a30c13');
+    return await this.motoModel
+      .find({ estado: estadoEnTienda })
+      .populate({
+        path: 'modelo',
+        populate: {
+          path: 'marca'
+        }
+      })
       .populate('proveedor')
       .populate('estado');
   }
