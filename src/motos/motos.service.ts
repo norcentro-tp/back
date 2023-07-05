@@ -29,7 +29,8 @@ export class MotosService {
         }
       })
       .populate('proveedor')
-      .populate('estado');
+      .populate('estado')
+      .exec();
   }
 
   async findOne(id: string) {
@@ -42,11 +43,13 @@ export class MotosService {
         }
       })
       .populate('proveedor')
-      .populate('estado');
+      .populate('estado')
+      .exec();
   }
 
   async findAllVenta() {
     const estadoEnTienda = new Types.ObjectId('644985cfc5afa53631a30c13');
+    console.log(estadoEnTienda);
     return await this.motoModel
       .find({ estado: estadoEnTienda })
       .populate({
@@ -56,7 +59,8 @@ export class MotosService {
         }
       })
       .populate('proveedor')
-      .populate('estado');
+      .populate('estado')
+      .exec();
   }
 
   async update(id: string, updateMotoDto: UpdateMotoDto) {

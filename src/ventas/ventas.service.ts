@@ -22,7 +22,7 @@ export class VentasService {
       _id: new Types.ObjectId(),
       monto: createVentaDto.monto,
       fecha_entrega: createVentaDto.fecha_entrega,
-      fecha_venta: createVentaDto.fecha_venta,
+      fecha_venta: new Date(),
       metodo_pago: createVentaDto.metodo_pago,
       moto: new Types.ObjectId(createVentaDto.moto),
       cliente: new Types.ObjectId(createVentaDto.cliente),
